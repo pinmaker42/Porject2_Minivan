@@ -31,8 +31,42 @@ public class MinivanSlidingDoor {
     }
 
     public Result setGear(Gear requestedGear) {
-        return Result.GEAR_PARKED;
-        //return null; // TODO: Replace this placeholder
+        //Park, neutral, reverse, drive
+        //Logic If park -> park -> gear released
+        /**
+         * Gear was any gear other than park; is now in park.
+         */
+//        //GEAR_PARKED,
+//
+//                /**
+//                 * Gear was in park; is now in any other gear.
+//                 */
+//                GEAR_RELEASED,
+//
+//                /**
+//                 * Gear was any gear other than park; is now in a different non-park gear.
+//                 * For example, this applies to shifting from neutral to drive.
+//                 */
+//                GEAR_CHANGED,
+        //If gear started in park and ended in park
+        if(requestedGear == this.gear) {
+            return  result.NO_ACTION;
+        }
+
+        //If gear was in park and now moving to another gear
+        if(this.gear == Gear.PARK)
+        {
+            if(requestedGear != gear.PARK)
+            {
+                return result.GEAR_RELEASED;
+            }
+
+        }
+
+        else {
+            return result.GEAR_PARKED;
+        }
+        return result.NO_ACTION;
     }
 
     public Result setChildSafe(boolean requestedEngage) {
